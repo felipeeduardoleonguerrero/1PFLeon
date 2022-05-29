@@ -1,0 +1,33 @@
+<!--Formulario para agergar y editar estudiantes con Angular material y Reactive forms-->
+
+<h1 appTitleSize>Añadir/cambiar estudiante</h1>
+<form [formGroup]="studentForm" (ngSubmit)="onSubmit()">
+<mat-form-field appearance="fill">
+    <mat-label>Nombres</mat-label>
+    <input formControlName="student" matInput>
+    <div *ngIf="studentForm.get('student')?.errors?.['required'] && !studentForm.get('student')?.pristine" class="alert alert-danger">Campo requerido</div>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Appellidos</mat-label>
+    <input formControlName="studentTwo" matInput>
+    <div *ngIf="studentForm.get('studentTwo')?.errors?.['required'] && !studentForm.get('studentTwo')?.pristine" class="alert alert-danger">Campo requerido</div>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Curso</mat-label>
+    <mat-select formControlName="course">
+      <mat-option value="Angular">Angular</mat-option>
+      <mat-option value="Javascript">Javascript</mat-option>
+      <mat-option value="PHP">PHP</mat-option>
+    </mat-select>
+    <div *ngIf="studentForm.get('course')?.errors?.['required'] && !studentForm.get('course')?.pristine" class="alert alert-danger">Campo requerido</div>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Clase</mat-label>
+    <mat-select formControlName="class">
+      <mat-option value="Introducción">Introducción</mat-option>
+      <mat-option value="Primera">Primera</mat-option>
+    </mat-select>
+    <div *ngIf="studentForm.get('class')?.errors?.['required'] && !studentForm.get('class')?.pristine" class="alert alert-danger">Campo requerido</div>
+  </mat-form-field> 
+  <button mat-raised-button color="accent" type="submit">Enviar</button>
+</form>

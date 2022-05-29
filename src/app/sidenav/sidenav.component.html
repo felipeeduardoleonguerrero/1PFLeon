@@ -1,0 +1,38 @@
+<!--Barra lateral desplegable-->
+
+<mat-drawer-container class="example-container" autosize>
+
+  <!--Menú lateral-->
+
+    <mat-drawer #drawer class="example-sidenav" mode="side">
+      <p>Auto-resizing sidenav</p>
+      <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
+      <button (click)="showFiller = !showFiller" mat-raised-button>
+        Toggle extra text
+      </button>
+    </mat-drawer>
+
+  <!--Contenido principal-->
+
+    <div class="example-sidenav-content">
+
+      <div class="sp-content">
+        
+        <div class="button-container">
+          <button type="button" mat-stroked-button color="accent" (click)="drawer.toggle()"><span class="material-icons">menu_open</span>Menú lateral</button>
+        </div>
+
+        <app-student-list [students]="data" *ngIf="dataSubmitted" (studentToEdit)="onPassEdit($event)" (studentsUpdated)="onUpdateDeleteStudents($event)"></app-student-list>
+
+        <app-form-one (addedItem)="onItemAdd($event)" *ngIf="!dataSubmitted" [studentToEdit]="studentToEdit" (editedItem)="onItemEdit($event)"></app-form-one>
+
+        <div class="button-container">
+          <button mat-raised-button color="accent" *ngIf="dataSubmitted" (click)="onClickAdd()">Nuevo estudiante</button>
+        </div>
+
+      </div>
+      
+    </div>
+  
+</mat-drawer-container>
+  
